@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hood to Hood | Sign up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nabla&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainStyle.css">
+</head>
+<body>
+        <%- include('nav.ejs') %>
+        <main>
+            <section class="signUpSection">
+                <form class="signUpForm">
+                    <label for="firstName">First name</label>
+                     <input type="text" id="firstName" name="firstName">
+                    <label for="lastName">Last name</label>
+                     <input type="text" id="lastName" name="lastName">
+                    <label for="nickname">Nickname</label>
+                     <input type="nickname" id="nickname" name="nickname">
+                    <label for="password">Password</label>
+                     <input type="password" id="password" name="password">
+                    <label for="confPassword">Confirm password</label>
+                     <input type="password" id="confPassword" name="confPassword">
+                    <button type="submit">Sign up</button> 
+                </form>
+            </section>
+        </main>
+</body>
+</html>

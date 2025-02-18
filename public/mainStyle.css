@@ -2,12 +2,75 @@
 body { 
     margin: 0;
     background-color: #1B1833;
+    color: #ffd950;
 }
 nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 1rem 3rem;
-    border-bottom: 5px solid #AB4459
+    border-bottom: 5px solid #AB4459;
 }
 .logo {
     font-family: "Nabla";
     font-size: 2rem;
+}
+.navButtonsDiv button {
+    font-family: 'Sour Gummy';
+    background-color: #AB4459;
+    color: #ffd950;
+    font-size: 1.7rem;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 0;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.navButtonsDiv button:hover {
+  transform: scale(1.1);
+}
+.signUpSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 7rem
+}
+
+.signUpForm {
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #AB4459;
+    max-width: 400px;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.signUpForm label {
+  font-family: 'Sour Gummy';
+  font-size: 2rem;
+}
+
+.signUpForm input {
+    font-family: 'Sour Gummy';
+    border-radius: 10px;
+    padding: 2px 10px;
+    font-size: 2rem;
+}
+.signUpForm button {
+    font-family: 'Sour Gummy';
+    background-color: #AB4459;
+    color: #ffd950;
+    font-size: 1.4rem;
+    padding: 10px;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: 0;
+    transition: background-color 0.4s, color 0.4s;
+    cursor: pointer;
+}
+.signUpForm button:hover {
+    background-color: #e0b61e;
+    color: #AB4459;
 }
