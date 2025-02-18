@@ -1,0 +1,13 @@
+/* https://colorhunt.co/palette/f29f58ab44594417521b1833 */
+body { 
+    margin: 0;
+    background-color: #1B1833;
+}
+nav {
+    margin: 1rem 3rem;
+    border-bottom: 5px solid #AB4459
+}
+.logo {
+    font-family: "Nabla";
+    font-size: 2rem;
+}
