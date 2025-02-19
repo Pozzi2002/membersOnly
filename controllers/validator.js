@@ -24,3 +24,10 @@ exports.signUpValidator = [
       .isLength({min: 1, max: 25}).withMessage('Should be minimum 1 character and maximum 25')
       .custom((value, {req}) => value === req.body.password).withMessage('The passwords should be identical')
 ];
+
+exports.checkMessage = [
+  body('message').trim()
+  .notEmpty().withMessage("Shouldn't be empty")
+  .isLength({min: 1, max: 150}).withMessage('Should be minimum 1 character and maximum 150')
+  .escape()
+]

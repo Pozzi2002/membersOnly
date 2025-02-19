@@ -6,7 +6,6 @@ const customNotFoundError = require('../customErrors/errors');
 
 mainPageRouter.get('/', (req, res) => {
     res.locals.currentUser = req.user
-    console.log(req.user)
     res.render('mainPage')
 });
 
@@ -25,14 +24,19 @@ mainPageRouter.get('/log-out', (req, res ) => {
     })
 })
 
-mainPageRouter.get('/becomeAdmin', (req, res, next) => {
-    if (req.isAuthenticated()) {
+mainPageRouter.get('/becomeAdmin',mainPageConroller.testOnAuth, (req, res, next) => {
       res.locals.currentUser = req.user
       res.render('becomeAdmin')
-    } else {
-      throw new customNotFoundError('You not authorize!')
-    }
 });
-
 mainPageRouter.post('/becomeAdmin', mainPageConroller.becomeAdminQuery);
+
+mainPageRouter.get('/sendMsg', mainPageConroller.testOnAuth, (req, res) => {
+    res.locals.currentUser = req.user
+    res.render('sendMsg');
+});
+mainPageRouter.post('/sendMsg', mainPageConroller.postMessage)
+
+
+
+
 module.exports = mainPageRouter;

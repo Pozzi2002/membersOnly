@@ -5,6 +5,8 @@ const SQL = `
 CREATE TABLE users (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
                     firstName VARCHAR (255), lastName VARCHAR (255),
                     nickName VARCHAR (255), password VARCHAR (255), admin BOOLEAN);
+
+CREATE TABLE messages (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, nickname TEXT, message TEXT, date TIMESTAMP);
 `
 
 async function main() {

@@ -15,3 +15,7 @@ exports.checkUsernameDB = async (nickname) => {
 exports.makeAnAdmin = async (nickname) => {
     await pool.query('UPDATE users SET admin = $2 WHERE nickname = $1', [nickname, true])
 };
+
+exports.addMessage = async (nickname, message) => {
+  await pool.query('INSERT INTO messages (nickname, message, date) VALUES ($1, $2, $3)', [nickname, message, new Date().toISOString()])
+};

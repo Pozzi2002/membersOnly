@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
-const { signUpValidator } = require('./validator');
+const { signUpValidator, checkMessage } = require('./validator');
+const customNotFoundError = require('../customErrors/errors');
 require('dotenv').config();
 const db = require('../db/queries');
 
@@ -32,9 +33,23 @@ exports.becomeAdminQuery = async (req, res) => {
     await db.makeAnAdmin(req.user.nickname)
     res.redirect('/')
   } else {
-        res.locals.currentUser = req.user
+    res.locals.currentUser = req.user
     return res.status(400).render('becomeAdmin', {
         errors: [{msg: 'Incorrect password'}]
     })
   }
+};
+
+exports.postMessage = [
+    checkMessage,
+    async (req, res) => {
+        await db.addMessage(req.body.message, req.user.nickname);
+    }
+]
+
+exports.testOnAuth = (req, res, next) => {
+  if (!req.isAuthenticated()) {
+    throw new customNotFoundError('You not authorize!');
+  } 
+  next()
 };

@@ -112,3 +112,11 @@ nav {
 .errHref:hover {
     border-bottom: 5px solid red
 }
+.createMsg {
+    resize: none;
+    font-family: 'Sour Gummy';  
+    background-color: rgb(236, 236, 236);
+    font-size: 1.6rem;
+    width: 400px;
+    height: 200px
+}
