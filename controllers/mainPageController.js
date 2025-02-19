@@ -17,7 +17,6 @@ exports.signUpQuery = [
             })
         };
         const checkUsernameExist = await db.checkUsernameDB(req.body.nickName);
-        console.log(checkUsernameExist)
         if (checkUsernameExist.length > 0) {
             return res.status(400).render('signUp', {
                 errors: [{msg: 'Nickname already exist!'}]
@@ -32,7 +31,6 @@ exports.signUpQuery = [
 exports.logInQuery = [
   logInValidator,
   async (req, res, next) => {
-    console.log(req.body.password)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render('logIn', {
@@ -60,7 +58,7 @@ exports.becomeAdminQuery = async (req, res) => {
 exports.postMessage = [
     checkMessage,
     async (req, res) => {
-        await db.addMessage(req.body.message, req.user.nickname);
+        await db.addMessage(req.user.nickname, req.body.message);
         res.redirect('/');
     }
 ]
@@ -71,3 +69,9 @@ exports.testOnAuth = (req, res, next) => {
   };
   next();
 };
+
+exports.handleMainPage = async (req, res) => {
+  const allMsgs = await db.allMessagesDB();
+  res.locals.currentUser = req.user
+  res.render('mainPage', {allMsgs: allMsgs})
+}

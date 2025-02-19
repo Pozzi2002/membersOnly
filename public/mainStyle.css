@@ -120,3 +120,43 @@ nav {
     width: 400px;
     height: 200px
 }
+
+.allMessages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+.oneMessage {
+    display: flex;
+    width: 35%;
+    flex-direction: column;
+    font-family: 'Sour Gummy'; 
+    list-style: none;
+    border: 5px solid #AB4459;
+}
+.oneMessage h2 {
+    background-color: #AB4459;
+    color: #ffee00;
+    font-size: 2rem;
+    margin: 0;
+    padding: 5px;
+}
+.oneMessage p {
+    text-wrap: wrap;
+    word-break: break-all;
+    font-size: 1.4rem;
+    padding: 10px;
+    color: #FFB200;
+}
+.deleteBtn {
+  font-family: 'Sour Gummy'; 
+  background-color: #ff6f00;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.deleteBtn:hover {
+    background-color: #faea6b;
+}

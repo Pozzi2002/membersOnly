@@ -2,12 +2,8 @@ const express = require('express');
 const mainPageRouter = express.Router();
 const mainPageConroller = require('../controllers/mainPageController')
 const passport = require('passport')
-const customNotFoundError = require('../customErrors/errors');
 
-mainPageRouter.get('/', (req, res) => {
-    res.locals.currentUser = req.user
-    res.render('mainPage')
-});
+mainPageRouter.get('/', mainPageConroller.handleMainPage);
 
 mainPageRouter.get('/sign-up', (req, res) => res.render("signUp")
 );
@@ -26,7 +22,8 @@ mainPageRouter.get('/log-out', (req, res ) => {
     req.logout((err) => {
         if (err) {
             return next(err)
-        } 
+        }
+        res.locals.currentUser = req.user
         res.redirect('/')
     })
 })

@@ -19,3 +19,8 @@ exports.makeAnAdmin = async (nickname) => {
 exports.addMessage = async (nickname, message) => {
   await pool.query('INSERT INTO messages (nickname, message, date) VALUES ($1, $2, $3)', [nickname, message, new Date().toISOString()])
 };
+
+exports.allMessagesDB = async () => {
+  const { rows } = await pool.query('SELECT * FROM messages');
+  return rows
+};

@@ -1,0 +1,26 @@
+<% if (locals.currentUser) { %> 
+  <% if(currentUser.admin) {%>
+      <ul class="allMessages">
+          <% allMsgs.forEach((msg) => { %>
+              <li class="oneMessage">
+                  <h2>Author: <%=msg.nickname%></h2>
+                  <p>Msg: <%=msg.message%></p>
+                  <p>Date: <%=msg.date%></p>
+                  <button class="deleteBtn">Delete</button>
+              </li>
+          <% }) %>
+      </ul>
+  <%} else { %>
+    <ul class="allMessages">
+        <% allMsgs.forEach((msg) => { %>
+            <li class="oneMessage">
+                <h2>Anonimus (Only for admins)</h2>
+                <div>
+                  <p>Message: <%=msg.message%></p>
+                  <p>Date: Secret (Only for admins)</p>
+                </div>
+            </li>
+        <% }) %>
+    </ul>
+  <% } %>
+<% } %>
