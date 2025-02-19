@@ -25,9 +25,19 @@ exports.signUpValidator = [
       .custom((value, {req}) => value === req.body.password).withMessage('The passwords should be identical')
 ];
 
+exports.logInValidator = [
+  body('nickName').trim()
+  .notEmpty().withMessage('Nickname not should be empty')
+  .isAlphanumeric().withMessage('Nickname should be alphanumeric')
+  .isLength({min: 1, max: 20}).withMessage('Should be minimum 1 character and maximum 20')
+  .escape(),
+  body('password')
+  .notEmpty().withMessage('Password not should be empty')
+  .isLength({min: 1, max: 25}).withMessage('Should be minimum 1 character and maximum 25')
+]
+
 exports.checkMessage = [
   body('message').trim()
   .notEmpty().withMessage("Shouldn't be empty")
   .isLength({min: 1, max: 150}).withMessage('Should be minimum 1 character and maximum 150')
-  .escape()
 ]

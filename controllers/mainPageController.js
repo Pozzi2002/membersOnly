@@ -1,13 +1,14 @@
 const { validationResult } = require('express-validator');
-const { signUpValidator, checkMessage } = require('./validator');
+const { signUpValidator, checkMessage, logInValidator } = require('./validator');
 const customNotFoundError = require('../customErrors/errors');
+const passport = require('passport')
 require('dotenv').config();
 const db = require('../db/queries');
 
 
 exports.signUpQuery = [
     signUpValidator, 
-    async (req, res) => {
+    async (req, res) => {   
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).render('signUp.ejs', {
@@ -28,6 +29,22 @@ exports.signUpQuery = [
     }
 ];
 
+exports.logInQuery = [
+  logInValidator,
+  async (req, res, next) => {
+    console.log(req.body.password)
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render('logIn', {
+        title: 'Login user',
+        errors: errors.array()
+      })
+    };
+    next()
+  }
+]
+
+
 exports.becomeAdminQuery = async (req, res) => {
   if (req.body.secretPassword === process.env.SECRET) {
     await db.makeAnAdmin(req.user.nickname)
@@ -44,12 +61,13 @@ exports.postMessage = [
     checkMessage,
     async (req, res) => {
         await db.addMessage(req.body.message, req.user.nickname);
+        res.redirect('/');
     }
 ]
 
 exports.testOnAuth = (req, res, next) => {
   if (!req.isAuthenticated()) {
     throw new customNotFoundError('You not authorize!');
-  } 
-  next()
+  };
+  next();
 };

@@ -9,11 +9,18 @@ mainPageRouter.get('/', (req, res) => {
     res.render('mainPage')
 });
 
-mainPageRouter.get('/sign-up', (req, res) => res.render("signUp"));
+mainPageRouter.get('/sign-up', (req, res) => res.render("signUp")
+);
 mainPageRouter.post('/sign-up', mainPageConroller.signUpQuery);
 
-mainPageRouter.get('/log-in', (req, res) => res.render("logIn"));
-mainPageRouter.post('/log-in', passport.authenticate('local', {successRedirect: '/', failureRedirect: '/sign-up'}));
+mainPageRouter.get('/log-in', (req, res) => {
+    if (req.session.messages) {
+        return res.status(400).render('logIn', {errors: [{msg: req.session.messages}]});
+    }
+    res.render("logIn")
+});
+
+mainPageRouter.post('/log-in', mainPageConroller.logInQuery, passport.authenticate('local', {successRedirect: '/', failureRedirect: '/log-in', failureMessage: 'Not such username or password!'}));
 
 mainPageRouter.get('/log-out', (req, res ) => {
     req.logout((err) => {
@@ -34,7 +41,7 @@ mainPageRouter.get('/sendMsg', mainPageConroller.testOnAuth, (req, res) => {
     res.locals.currentUser = req.user
     res.render('sendMsg');
 });
-mainPageRouter.post('/sendMsg', mainPageConroller.postMessage)
+mainPageRouter.post('/sendMsg', mainPageConroller.testOnAuth, mainPageConroller.postMessage)
 
 
 

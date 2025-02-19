@@ -15,6 +15,7 @@
             <section class="signUpSection">
                 <form class="signUpForm" action="/log-in" method="POST">
                     <h2 class="signUpLogo">Login</h2>
+                    <%- include('partials/error.ejs') %>
                     <label for="nickName">Nickname</label>
                      <input type="nickName" id="nickName" name="nickName" maxlength="20" required />
                     <label for="password">Password</label>

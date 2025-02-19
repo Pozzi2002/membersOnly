@@ -2,6 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../db/pool');
 const bcrypt = require('bcryptjs');
+const customNotFoundError = require('../customErrors/errors');
 
 const customFields = {
     usernameField: 'nickName',
@@ -12,12 +13,13 @@ const strategyFn = (async (username, password, done) => {
     try {
         const { rows } = await pool.query('SELECT * FROM users WHERE nickname = $1', [username]);
         const user = rows[0];
-        const match = await bcrypt.compare(password, user.password);
+
         if (!user) {
-            return done(null, false, {message: 'Such username not found!'});
+          return done(null, false, {message: 'Such username not found!'});
         }
+        const match = await bcrypt.compare(password, user.password);
         if (!match) {
-            return done(null, false, {message: 'Password not correct!'})
+          return done(null, false, {message: 'Password not correct!'})
         }
         return done(null, user)
     } catch(err) {
