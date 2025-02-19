@@ -11,3 +11,7 @@ exports.checkUsernameDB = async (nickname) => {
   const { rows } = await pool.query('SELECT * FROM users WHERE nickname = $1', [nickname])
   return rows
 };
+
+exports.makeAnAdmin = async (nickname) => {
+    await pool.query('UPDATE users SET admin = true WHERE nickname = $1', [nickname])
+};

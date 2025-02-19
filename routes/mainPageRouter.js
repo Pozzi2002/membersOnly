@@ -2,6 +2,7 @@ const express = require('express');
 const mainPageRouter = express.Router();
 const mainPageConroller = require('../controllers/mainPageController')
 const passport = require('passport')
+const customNotFoundError = require('../customErrors/errors');
 
 mainPageRouter.get('/', (req, res) => {
     res.locals.currentUser = req.user
@@ -22,4 +23,15 @@ mainPageRouter.get('/log-out', (req, res ) => {
         res.redirect('/')
     })
 })
+
+mainPageRouter.get('/becomeAdmin', (req, res, next) => {
+    if (req.isAuthenticated()) {
+      res.locals.currentUser = req.user
+      res.render('becomeAdmin')
+    } else {
+      throw new customNotFoundError('You not authorize!')
+    }
+});
+
+mainPageRouter.post('/becomeAdmin', mainPageConroller.becomeAdminQuery);
 module.exports = mainPageRouter;

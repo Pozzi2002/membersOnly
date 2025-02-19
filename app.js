@@ -25,7 +25,12 @@ app.use(mainPageRouter);
 
 
 
+/*Error middleware*/
 
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(err.statusCode || 500).render('errPage', {errMsg: err.message})
+})
 
 /*Simple configure */
 app.use(express.static(path.join(__dirname, "public")));

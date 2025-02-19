@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hood to Hood</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nabla&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mainStyle.css">
+</head>
+<body>
+  <%- include('partials/nav.ejs') %>
+  <main>
+    <section class="signUpSection">
+        <form class="signUpForm" action="/becomeAdmin" method="POST">
+            <h2 class="signUpLogo">Field for secret</h2>
+            <%- include('partials/error.ejs') %>
+            <label for="secretPassword">Secret password</label>
+             <input type="password" id="secretPassword" name="secretPassword" minlength="8" maxlength="25" required />
+            <button type="submit">Submit</button> 
+        </form>
+    </section>
+</main>
+</body>
+</html>
