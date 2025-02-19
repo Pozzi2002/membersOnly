@@ -81,3 +81,15 @@ nav {
     background-color: #e0b61e;
     color: #AB4459;
 }
+.signUpLogo {
+    font-family: 'Sour Gummy';
+    font-size: 2.5rem;
+    margin: 2rem;
+    margin-top: 0;
+}
+
+.welcomeh2 {
+    font-family: 'Sour Gummy';
+    text-align: center;
+    font-size: 2.5rem;
+}

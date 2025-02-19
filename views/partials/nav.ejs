@@ -1,7 +1,13 @@
 <nav>
     <h1 class="logo"><a href="/">HoodToHood for members only</a></h1>
     <div class="navButtonsDiv">
-      <a href="/log-in"><button>Log in</button></a>
-      <a href="/sign-up"><button>Sign up</button></a>
+      <% if (!locals.currentUser) {%>
+        <a href="/log-in"><button>Log in</button></a>
+        <a href="/sign-up"><button>Sign up</button></a>
+      <% } else { %>
+        <a><button>Become an admin</button></a>
+        <a><button>Send message</button></a>
+        <a href="/log-out"><button>Log out</button></a>
+      <% } %>
     </div>
 </nav>

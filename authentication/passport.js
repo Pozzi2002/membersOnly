@@ -8,7 +8,6 @@ const customFields = {
     passwordField: 'password'
 }
 
-
 const strategyFn = (async (username, password, done) => {
     try {
         const { rows } = await pool.query('SELECT * FROM users WHERE nickname = $1', [username]);

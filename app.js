@@ -7,6 +7,7 @@ const mainPageRouter = require('./routes/mainPageRouter');
 const passport = require('passport');
 require('dotenv').config();
 require('./authentication/passport');
+
 /*Pre configure*/
 app.use(express.urlencoded({ extended: true }));
 app.use(session({
