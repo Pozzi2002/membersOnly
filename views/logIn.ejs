@@ -13,19 +13,12 @@
         <%- include('partials/nav.ejs') %>
         <main>
             <section class="signUpSection">
-                <form class="signUpForm" action="/sign-up" method="POST">
-                    <%- include('partials/error.ejs') %>
-                    <label for="firstName">First name</label>
-                     <input type="text" id="firstName" name="firstName" maxlength="20" required />
-                    <label for="lastName">Last name</label>
-                     <input type="text" id="lastName" name="lastName" maxlength="20"  required />
+                <form class="signUpForm" action="/log-in" method="POST">
                     <label for="nickName">Nickname</label>
-                     <input type="nickName" id="nickName" name="nickName" maxlength="20"  required />
+                     <input type="nickName" id="nickName" name="nickName" maxlength="20" required />
                     <label for="password">Password</label>
                      <input type="password" id="password" name="password" maxlength="25" required />
-                    <label for="confPassword">Confirm password</label>
-                     <input type="password" id="confPassword" name="confPassword" minlength="8" maxlength="25" required />
-                    <button type="submit">Sign up</button> 
+                    <button type="submit">Log in</button> 
                 </form>
             </section>
         </main>
