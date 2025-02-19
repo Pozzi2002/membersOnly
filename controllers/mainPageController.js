@@ -17,7 +17,7 @@ exports.signUpQuery = [
         const checkUsernameExist = await db.checkUsernameDB(req.body.nickName);
         console.log(checkUsernameExist)
         if (checkUsernameExist.length > 0) {
-            return res.status(400).render('signUp.ejs', {
+            return res.status(400).render('signUp', {
                 errors: [{msg: 'Nickname already exist!'}]
             })
         };
@@ -29,7 +29,12 @@ exports.signUpQuery = [
 
 exports.becomeAdminQuery = async (req, res) => {
   if (req.body.secretPassword === process.env.SECRET) {
-    await db.makeAnAdmin(req.user.nickName)
-    res.redirect('/becomeAdmin')
-  } 
+    await db.makeAnAdmin(req.user.nickname)
+    res.redirect('/')
+  } else {
+        res.locals.currentUser = req.user
+    return res.status(400).render('becomeAdmin', {
+        errors: [{msg: 'Incorrect password'}]
+    })
+  }
 };

@@ -6,6 +6,7 @@ const customNotFoundError = require('../customErrors/errors');
 
 mainPageRouter.get('/', (req, res) => {
     res.locals.currentUser = req.user
+    console.log(req.user)
     res.render('mainPage')
 });
 

@@ -5,7 +5,9 @@
         <a href="/log-in"><button>Log in</button></a>
         <a href="/sign-up"><button>Sign up</button></a>
       <% } else { %>
+       <% if (!currentUser.admin) { %>
         <a href="/becomeAdmin"><button>Become an admin</button></a>
+       <% } %>
         <a><button>Send message</button></a>
         <a href="/log-out"><button>Log out</button></a>
       <% } %>

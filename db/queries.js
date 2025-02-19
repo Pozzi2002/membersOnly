@@ -13,5 +13,5 @@ exports.checkUsernameDB = async (nickname) => {
 };
 
 exports.makeAnAdmin = async (nickname) => {
-    await pool.query('UPDATE users SET admin = true WHERE nickname = $1', [nickname])
+    await pool.query('UPDATE users SET admin = $2 WHERE nickname = $1', [nickname, true])
 };

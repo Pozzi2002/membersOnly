@@ -12,7 +12,12 @@
 <body>
   <%- include('partials/nav.ejs') %>
   <% if (currentUser) { %>
-    <h1 class="welcomeh2">Welcome <%= locals.currentUser.nickname %>! &#128540;</h1>
+    <h1 class="welcomeh2">
+      Welcome <%= locals.currentUser.nickname %>! &#128540;
+      <% if (currentUser.admin) { %>
+        (admin)
+      <% } %>
+    </h1>
   <% } %>
 </body>
 </html>
