@@ -18,15 +18,12 @@ mainPageRouter.get('/log-in', (req, res) => {
 
 mainPageRouter.post('/log-in', mainPageConroller.logInQuery, passport.authenticate('local', {successRedirect: '/', failureRedirect: '/log-in', failureMessage: 'Not such username or password!'}));
 
-mainPageRouter.get('/log-out', (req, res ) => {
-    req.logout((err) => {
-        if (err) {
-            return next(err)
-        }
-        res.locals.currentUser = req.user
+mainPageRouter.get('/log-out', (req, res) => {
+    req.logout()
+        // res.locals.currentUser = req.user
         res.redirect('/')
-    })
 })
+
 
 mainPageRouter.get('/becomeAdmin',mainPageConroller.testOnAuth, (req, res, next) => {
       res.locals.currentUser = req.user
