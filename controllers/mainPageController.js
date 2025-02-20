@@ -75,3 +75,12 @@ exports.handleMainPage = async (req, res) => {
   res.locals.currentUser = req.user
   res.render('mainPage', {allMsgs: allMsgs})
 }
+
+exports.deleteMsg = async (req, res) => {
+  if (req.isAuthenticated) {
+    await db.deleteMsgDB(req.body.msgId);
+    res.redirect('/')
+  } else {
+    res.redirect('/')
+  }
+};

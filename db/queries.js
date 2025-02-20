@@ -24,3 +24,7 @@ exports.allMessagesDB = async () => {
   const { rows } = await pool.query('SELECT * FROM messages');
   return rows
 };
+
+exports.deleteMsgDB = async (id) => {
+  await pool.query('DELETE FROM messages WHERE id = $1', [id])
+};

@@ -149,10 +149,17 @@ nav {
     padding: 10px;
     color: #FFB200;
 }
+.oneMessage p span{
+    font-size: 2rem;
+}
+.deleteMsgForm {
+    /* display: flex; */
+}
 .deleteBtn {
   font-family: 'Sour Gummy'; 
   background-color: #ff6f00;
   font-size: 2rem;
+  width: 100%;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;

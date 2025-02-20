@@ -40,7 +40,7 @@ mainPageRouter.get('/sendMsg', mainPageConroller.testOnAuth, (req, res) => {
 });
 mainPageRouter.post('/sendMsg', mainPageConroller.testOnAuth, mainPageConroller.postMessage)
 
-
+mainPageRouter.post('/deleteMsg', mainPageConroller.deleteMsg)
 
 
 module.exports = mainPageRouter;

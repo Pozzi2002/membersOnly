@@ -7,6 +7,9 @@ CREATE TABLE users (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                     nickName VARCHAR (255), password VARCHAR (255), admin BOOLEAN);
 
 CREATE TABLE messages (id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, nickname TEXT, message TEXT, date TIMESTAMP);
+
+INSERT INTO messages (nickname, message, date) 
+  VALUES ('Stroganov Nikita', 'Yea Im finish the project', '${new Date().toISOString()}');
 `
 
 async function main() {

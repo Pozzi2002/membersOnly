@@ -4,9 +4,12 @@
           <% allMsgs.forEach((msg) => { %>
               <li class="oneMessage">
                   <h2>Author: <%=msg.nickname%></h2>
-                  <p>Msg: <%=msg.message%></p>
-                  <p>Date: <%=msg.date%></p>
-                  <button class="deleteBtn">Delete</button>
+                  <p><span>&#128233;</span> <%=msg.message%></p>
+                  <p><span>&#128347;</span> <%=msg.date%></p>
+                  <form class="deleteMsgForm" action="/deleteMsg" method="POST">
+                    <input id="msgId" name="msgId" style="display: none;" value="<%=msg.id%>">
+                    <button class="deleteBtn">Delete</button>
+                  </form>
               </li>
           <% }) %>
       </ul>
@@ -16,8 +19,8 @@
             <li class="oneMessage">
                 <h2>Anonimus (Only for admins)</h2>
                 <div>
-                  <p>Message: <%=msg.message%></p>
-                  <p>Date: Secret (Only for admins)</p>
+                  <p><span>&#128233;</span> <%=msg.message%></p>
+                  <p><span>&#128347;</span> Secret (Only for admins)</p>
                 </div>
             </li>
         <% }) %>
