@@ -2,7 +2,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../db/pool');
 const bcrypt = require('bcryptjs');
-const customNotFoundError = require('../customErrors/errors');
 
 const customFields = {
     usernameField: 'nickName',
