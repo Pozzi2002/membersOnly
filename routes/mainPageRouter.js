@@ -10,7 +10,7 @@ mainPageRouter.get('/sign-up', (req, res) => res.render("signUp")
 mainPageRouter.post('/sign-up', mainPageConroller.signUpQuery);
 
 mainPageRouter.get('/log-in', (req, res) => {
-    if (req.session.messages) {
+    if (req.session.messages.length > 0) {
         const error = req.session.messages[0];
         req.session.messages.splice(0);
         return res.status(400).render('logIn', {errors: [{msg: error}]});
