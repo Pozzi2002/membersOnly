@@ -10,7 +10,7 @@ mainPageRouter.get('/sign-up', (req, res) => res.render("signUp")
 mainPageRouter.post('/sign-up', mainPageConroller.signUpQuery);
 
 mainPageRouter.get('/log-in', (req, res) => {
-    if (req.session.messages.length > 0) {
+    if (req.session.messages) {
         const error = req.session.messages[0];
         req.session.messages.splice(0);
         return res.status(400).render('logIn', {errors: [{msg: error}]});
@@ -31,15 +31,16 @@ mainPageRouter.get('/becomeAdmin',mainPageConroller.testOnAuth, (req, res, next)
       res.locals.currentUser = req.user
       res.render('becomeAdmin')
 });
+
 mainPageRouter.post('/becomeAdmin', mainPageConroller.becomeAdminQuery);
 
 mainPageRouter.get('/sendMsg', mainPageConroller.testOnAuth, (req, res) => {
     res.locals.currentUser = req.user
     res.render('sendMsg');
 });
-mainPageRouter.post('/sendMsg', mainPageConroller.testOnAuth, mainPageConroller.postMessage)
 
-mainPageRouter.post('/deleteMsg', mainPageConroller.deleteMsg)
+mainPageRouter.post('/sendMsg', mainPageConroller.testOnAuth, mainPageConroller.postMessage);
 
+mainPageRouter.post('/deleteMsg', mainPageConroller.deleteMsg);
 
 module.exports = mainPageRouter;
